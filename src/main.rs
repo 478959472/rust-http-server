@@ -672,7 +672,12 @@ impl MainHandler {
                 let reverse = order == ORDER_DESC;
                 entries.sort_by(|a, b| {
                     let rv = match field.as_str() {
-                        "name" => a.filename.cmp(&b.filename),
+                        "name" => {
+                            let a_num = a.filename.chars().take_while(|c| c.is_numeric()).collect::<String>().parse::<i32>().unwrap_or(0);
+                            let b_num = b.filename.chars().take_while(|c| c.is_numeric()).collect::<String>().parse::<i32>().unwrap_or(0);
+                            a_num.cmp(&b_num)
+                            // a.filename.cmp(&b.filename)
+                        },
                         "modified" => {
                             let a = a.metadata.modified().unwrap();
                             let b = b.metadata.modified().unwrap();
