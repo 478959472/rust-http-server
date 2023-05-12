@@ -40,7 +40,7 @@ use middlewares::{AuthChecker, CompressionHandler, RequestLogger};
 
 const ORDER_ASC: &str = "asc";
 const ORDER_DESC: &str = "desc";
-const DEFAULT_ORDER: &str = ORDER_DESC;
+const DEFAULT_ORDER: &str = ORDER_ASC;
 
 lazy_static! {
     static ref SORT_FIELDS: Vec<&'static str> = vec!["name", "modified", "size"];
